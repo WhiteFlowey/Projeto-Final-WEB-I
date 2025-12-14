@@ -5,6 +5,8 @@
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
+> 🎮 **Acesse o projeto online:** [**Clique aqui para jogar**](https://whiteflowey.github.io/Projeto-Final-WEB-I/)
+
 **RetroHub** é uma plataforma web interativa que reúne três dos maiores clássicos da história dos videogames: **Snake**, **Asteroids** e **Tetris**. O projeto foi desenvolvido com foco em reviver a nostalgia dos anos 80 e 90, utilizando tecnologias web modernas para recriar a experiência arcade diretamente no navegador.
 
 ---
@@ -19,7 +21,7 @@ O site foi construído atendendo rigorosamente aos seguintes critérios estabele
 - [x] Uso correto de tags semânticas: **hero (section), header, nav, footer, main, section**.
 - [x] Site com **layout responsivo** (adaptável a celulares e computadores).
 - [x] **Botões interativos** que realizam ações de navegação e controle no site.
-- [x] Site disponível no **GitHub** e online via **GitHub Pages**.
+- [x] Site disponível no **GitHub** e online via [**GitHub Pages**](https://whiteflowey.github.io/Projeto-Final-WEB-I/).
 
 ---
 
