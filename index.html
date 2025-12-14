@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RetroHub - Arcade</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-dark text-white d-flex flex-column min-vh-100">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-uppercase neon-text" href="#" onclick="location.reload()">
+        🕹️ RetroHub
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto text-center">
+          <li class="nav-item">
+            <a class="nav-link active text-warning" href="#" onclick="app.scrollToTop()">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-neon" href="#snake-curiosidades">SNAKE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-neon" href="#asteroids-curiosidades">ASTEROIDS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-neon" href="#tetris-curiosidades" >TETRIS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hover-neon" href="#contato">CONTATO</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mt-3 mb-5 flex-grow-1">
+
+    <section id="home" class="text-center animate-fade-in">
+      <header class="mb-5">
+        <h1 class="display-3 mb-4 title-retro">RETROHUB</h1>
+
+        <p class="h4 text-warning mb-4 font-monospace blink">
+          INSERT COIN. PRESS START. 🪙
+        </p>
+
+        <div class="col-lg-8 mx-auto">
+          <p class="lead text-light opacity-75">
+            Bem-vindo à era em que zerar um jogo era questão de honra.
+            O <strong>RetroHub</strong> é o seu salão de jogos digital com 3 lendas do arcade.
+            Gráficos crocantes, dificuldade que não perdoa e a pura essência dos anos 90.
+          </p>
+          <p class="fs-5 text-white fst-italic mt-3">
+            Tem troco pra 1 real?
+          </p>
+        </div>
+      </header>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="card h-100 bg-secondary bg-opacity-10 border-success game-card">
+            <div class="card-body p-4 d-flex flex-column align-items-center">
+              <div class="icon-box mb-3 text-success">🐍</div>
+              <h3 class="card-title text-success font-monospace">SNAKE</h3>
+              <p class="card-text small text-light">O clássico da Nokia. Coma maçãs, cresça e não morda a própria calda.</p>
+              <button class="btn btn-outline-success w-100 mt-auto btn-retro"
+                onclick="app.goToGame('snake')">START</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 bg-secondary bg-opacity-10 border-danger game-card">
+            <div class="card-body p-4 d-flex flex-column align-items-center">
+              <div class="icon-box mb-3 text-danger">🧱</div>
+              <h3 class="card-title text-danger font-monospace">TETRIS</h3>
+              <p class="card-text small text-light">Organize os blocos caindo. A Rússia mandou lembranças.</p>
+              <button class="btn btn-outline-danger w-100 mt-auto btn-retro"
+                onclick="app.goToGame('tetris')">START</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 bg-secondary bg-opacity-10 border-primary game-card">
+            <div class="card-body p-4 d-flex flex-column align-items-center">
+              <div class="icon-box mb-3 text-primary">☄️</div>
+              <h3 class="card-title text-primary font-monospace">ASTEROIDS</h3>
+              <p class="card-text small text-light">Pilote sua nave no vácuo e destrua as rochas espaciais.</p>
+              <button class="btn btn-outline-primary w-100 mt-auto btn-retro"
+                onclick="app.goToGame('asteroids')">START</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="my-5 border-secondary opacity-25">
+
+    <section id="placeholder-area" class="text-center animate-fade-in py-5">
+      <div class="d-flex justify-content-center align-items-center mb-4" style="height: 38px;">
+        <h2 class="m-0 text-secondary title-retro opacity-50">ARCADE STANDBY</h2>
+      </div>
+
+      <div class="game-frame p-1 bg-dark mx-auto" style="max-width: 400px; height: 410px;">
+        <div
+          class="w-100 h-100 bg-black border border-secondary border-opacity-25 d-flex flex-column justify-content-center align-items-center">
+          <div class="text-secondary opacity-25 display-1 mb-3">?</div>
+          <p class="text-secondary opacity-50 font-monospace blink">SELECIONE UM JOGO ACIMA</p>
+        </div>
+      </div>
+
+      <div class="mt-4" style="height: 150px;"></div>
+    </section>
+
+    <section id="snake" class="d-none text-center animate-fade-in py-5">
+      <div class="d-flex justify-content-between align-items-center mb-4" style="max-width: 600px; margin: 0 auto;">
+        <button class="btn btn-sm btn-outline-light font-monospace" onclick="app.scrollToTop()">⬆ MENU</button>
+        <h2 class="m-0 text-warning title-retro">SNAKE</h2>
+        <div class="badge bg-danger fs-6 font-monospace">SCORE: <span id="score">0</span></div>
+      </div>
+
+      <div class="game-frame p-1 bg-dark mx-auto position-relative" style="max-width: 400px;">
+        <canvas id="gameCanvas" width="400" height="400" class="bg-black d-block w-100"></canvas>
+        <div id="gameOverScreen"
+          class="d-none position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+          style="background: rgba(0,0,0,0.85); z-index: 10;">
+          <h2 class="text-danger fw-bold display-4 title-retro mb-3">GAME OVER</h2>
+          <p class="text-white fs-4 font-monospace">PONTOS: <span id="finalScore">0</span></p>
+          <button class="btn btn-outline-light btn-sm font-monospace mt-3" onclick="snakeGame.init()">TENTAR
+            NOVAMENTE</button>
+        </div>
+      </div>
+
+      <div class="mt-4 control-panel">
+        <p class="text-white small mb-2 d-none d-md-block">Use <strong>W, A, S, D</strong> para Mover</p>
+        <div class="d-flex flex-column align-items-center gap-2">
+          <button class="btn btn-dark border-secondary btn-ctrl" id="btn-up">▲</button>
+          <div class="d-flex gap-2">
+            <button class="btn btn-dark border-secondary btn-ctrl" id="btn-left">◀</button>
+            <button class="btn btn-dark border-secondary btn-ctrl" id="btn-down">▼</button>
+            <button class="btn btn-dark border-secondary btn-ctrl" id="btn-right">▶</button>
+          </div>
+        </div>
+        <button class="btn btn-success mt-4 btn-retro" onclick="snakeGame.init()">RESTART</button>
+      </div>
+    </section>
+
+    <section id="asteroids" class="d-none text-center animate-fade-in py-5">
+      <div class="d-flex justify-content-between align-items-center mb-4" style="max-width: 600px; margin: 0 auto;">
+        <button class="btn btn-sm btn-outline-light font-monospace" onclick="app.scrollToTop()">⬆ MENU</button>
+        <h2 class="m-0 text-primary title-retro">ASTEROIDS</h2>
+        <div class="badge bg-primary fs-6 font-monospace">SCORE: <span id="astScore">0</span></div>
+      </div>
+
+      <div class="game-frame p-1 bg-dark mx-auto position-relative" style="max-width: 400px;">
+        <canvas id="astCanvas" width="400" height="400" class="bg-black d-block w-100"></canvas>
+        <div id="astGameOverScreen"
+          class="d-none position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+          style="background: rgba(0,0,0,0.85); z-index: 10;">
+          <h2 class="text-danger fw-bold display-4 title-retro mb-3">GAME OVER</h2>
+          <p class="text-white fs-4 font-monospace">PONTOS: <span id="astFinalScore">0</span></p>
+          <button class="btn btn-outline-light btn-sm font-monospace mt-3" onclick="asteroidsGame.init()">TENTAR
+            NOVAMENTE</button>
+        </div>
+      </div>
+
+      <div class="mt-4 control-panel">
+        <p class="text-white small mb-2 d-none d-md-block">Use <strong>W, A, D</strong> e <strong>K</strong> para Atirar
+        </p>
+        <div class="d-flex flex-column align-items-center gap-2">
+          <button class="btn btn-dark border-secondary btn-ctrl" id="ast-btn-up">▲</button>
+          <div class="d-flex gap-2">
+            <button class="btn btn-dark border-secondary btn-ctrl" id="ast-btn-left">◀</button>
+            <button class="btn btn-danger border-secondary btn-ctrl" id="ast-btn-shoot"
+              style="font-size: 1.2rem;">🔥</button>
+            <button class="btn btn-dark border-secondary btn-ctrl" id="ast-btn-right">▶</button>
+          </div>
+        </div>
+        <button class="btn btn-primary mt-4 btn-retro" onclick="asteroidsGame.init()">RESTART</button>
+      </div>
+    </section>
+
+    <section id="tetris" class="d-none text-center animate-fade-in py-5">
+      <div class="d-flex justify-content-between align-items-center mb-4" style="max-width: 600px; margin: 0 auto;">
+        <button class="btn btn-sm btn-outline-light font-monospace" onclick="app.scrollToTop()">⬆ MENU</button>
+        <h2 class="m-0 text-danger title-retro">TETRIS</h2>
+        <div class="badge bg-danger fs-6 font-monospace">SCORE: <span id="tetScore">0</span></div>
+      </div>
+
+      <div class="game-frame p-1 bg-dark mx-auto position-relative" style="max-width: 260px;">
+        <canvas id="tetCanvas" width="240" height="400" class="bg-black d-block mx-auto"></canvas>
+        <div id="tetGameOverScreen"
+          class="d-none position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+          style="background: rgba(0,0,0,0.85); z-index: 10;">
+          <h2 class="text-danger fw-bold display-4 title-retro mb-3">GAME OVER</h2>
+          <p class="text-white fs-4 font-monospace">PONTOS: <span id="tetFinalScore">0</span></p>
+          <button class="btn btn-outline-light btn-sm font-monospace mt-3" onclick="tetrisGame.init()">TENTAR
+            NOVAMENTE</button>
+        </div>
+      </div>
+
+      <div class="mt-4 control-panel">
+        <p class="text-white small mb-2 d-none d-md-block">
+          Use <strong>A, D</strong> para Mover, <strong>W</strong> para Girar e <strong>S</strong> para Descer
+        </p>
+        <div class="d-flex flex-column align-items-center gap-2">
+          <button class="btn btn-dark border-secondary btn-ctrl" id="tet-btn-rotate">↻</button>
+          <div class="d-flex gap-2">
+            <button class="btn btn-dark border-secondary btn-ctrl" id="tet-btn-left">◀</button>
+            <button class="btn btn-dark border-secondary btn-ctrl" id="tet-btn-down">▼</button>
+            <button class="btn btn-dark border-secondary btn-ctrl" id="tet-btn-right">▶</button>
+          </div>
+        </div>
+        <button class="btn btn-danger mt-4 btn-retro" onclick="tetrisGame.init()">RESTART</button>
+      </div>
+    </section>
+
+<section id="snake-curiosidades" class="py-5 mb-5">
+    <div class="container">
+
+        <div class="d-flex align-items-center gap-3 p-3 border border-success rounded bg-dark mb-4">
+            <span style="font-size: 1.8rem;">🐍</span>
+            <h2 class="m-0 font-monospace text-success">
+                Curiosidades do Snake
+            </h2>
+        </div>
+
+        <div class="card bg-dark border border-success text-light font-monospace">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    
+                    <div class="col-md-8">
+                        <h4 class="text-success mb-3">Do Arcade ao Bolso</h4>
+                        <p class="opacity-75">
+                            Embora todos lembrem dele nos celulares Nokia, o conceito nasceu muito antes, em <strong>1976</strong>, num jogo de fliperama chamado <em>Blockade</em>.
+                        </p>
+                        
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2">
+                                🟢 <strong>1997:</strong> O jogo explodiu de verdade quando veio pré-instalado no <strong>Nokia 6110</strong>.
+                            </li>
+                            <li class="mb-2">
+                                💻 <strong>QBasic:</strong> Nos anos 90, muita gente aprendeu a programar tentando recriar o jogo "Nibbles" no MS-DOS.
+                            </li>
+                            <li class="mb-2">
+                                🏆 <strong>O Fim:</strong> Teoricamente o jogo acaba. No Nokia 3310, isso acontece se você preencher a tela inteira com a cobra (2008 pontos).
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 text-center border-start border-success border-opacity-25">
+                        <div class="p-3">
+                            <div class="bg-success bg-opacity-25 p-2 rounded mb-2 d-inline-block" style="border: 4px solid #4CAF50;">
+                                <div class="bg-success bg-opacity-10 p-4 text-success" style="font-family: 'Press Start 2P', cursive; font-size: 0.7rem;">
+                                    GAME<br>OVER
+                                </div>
+                            </div>
+                            <p class="small text-muted fst-italic">"Tela do Nokia 3310"</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="border-success opacity-50 my-4">
+
+                <div class="row g-3">
+                    
+                    <div class="col-md-6">
+                        <div class="p-3 bg-black bg-opacity-25 rounded border border-success border-opacity-50 h-100">
+                            <h5 class="text-success fs-6 text-uppercase mb-2">💡 Dica de Mestre:</h5>
+                            <p class="m-0 small text-light opacity-75">
+                                Nunca faça curvas muito fechadas quando a cobra estiver grande! Tente andar em "zigue-zague" para economizar espaço na tela.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between text-center align-items-center h-100 px-2" style="font-size: 0.7rem;">
+                            <div>
+                                <span class="badge bg-secondary mb-1">1976</span>
+                                <div class="text-light opacity-50">Arcade</div>
+                            </div>
+                            <div class="border-top border-secondary flex-grow-1 mx-2 opacity-25"></div>
+                            <div>
+                                <span class="badge bg-success mb-1">1997</span>
+                                <div class="text-light fw-bold">Nokia</div>
+                            </div>
+                            <div class="border-top border-secondary flex-grow-1 mx-2 opacity-25"></div>
+                            <div>
+                                <span class="badge bg-secondary mb-1">Hoje</span>
+                                <div class="text-light opacity-50">Web</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="asteroids-curiosidades" class="py-5 mb-5">
+    <div class="container">
+
+        <div class="d-flex align-items-center gap-3 p-3 border border-primary rounded bg-dark mb-4">
+            <span style="font-size: 1.8rem;">☄️</span>
+            <h2 class="m-0 font-monospace text-primary">
+                Curiosidades do Asteroids
+            </h2>
+        </div>
+
+        <div class="card bg-dark border border-primary text-light font-monospace">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    
+                    <div class="col-md-8">
+                        <h4 class="text-primary mb-3">O Pai dos Vetores</h4>
+                        <p class="opacity-75">
+                            Lançado em <strong>1979</strong>, o Asteroids não usava pixels comuns, mas sim uma tela de <strong>vetores</strong> (feixes de luz desenhando linhas), o que deixava o brilho incrivelmente forte.
+                        </p>
+                        
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2">
+                                🌌 <strong>Sucesso Absoluto:</strong> Foi tão popular que os donos de arcade tiveram que instalar caixas maiores para guardar tantas moedas.
+                            </li>
+                            <li class="mb-2">
+                                🚀 <strong>Hiperspaço:</strong> O botão de teletransporte foi criado como um "botão de pânico". Você some, mas pode reaparecer dentro de uma rocha!
+                            </li>
+                            <li class="mb-2">
+                                📺 <strong>Burn-in:</strong> O jogo era tão brilhante que queimava a tela dos monitores se ficasse ligado muito tempo parado.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 text-center border-start border-primary border-opacity-25">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-center align-items-center gap-3" style="height: 100px;">
+                                <div style="width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 30px solid transparent; border-bottom-color: #0d6efd; filter: drop-shadow(0 0 5px #0d6efd);"></div>
+                                <div class="bg-light rounded-circle" style="width: 6px; height: 6px; box-shadow: 0 0 5px #fff;"></div>
+                                <div style="width: 40px; height: 40px; border: 2px solid #0d6efd; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; box-shadow: 0 0 5px #0d6efd;"></div>
+                            </div>
+                            <p class="small text-muted fst-italic mt-2">"Gráficos Vetoriais"</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="border-primary opacity-50 my-4">
+
+                <div class="row g-3">
+                    
+                    <div class="col-md-6">
+                        <div class="p-3 bg-black bg-opacity-25 rounded border border-primary border-opacity-50 h-100">
+                            <h5 class="text-primary fs-6 text-uppercase mb-2">💡 Física Newtoniana:</h5>
+                            <p class="m-0 small text-light opacity-75">
+                                No espaço não há atrito! Se você acelerar demais, não vai conseguir parar antes de bater. Dê toques leves no propulsor.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between text-center align-items-center h-100 px-2" style="font-size: 0.7rem;">
+                            <div>
+                                <span class="badge bg-secondary mb-1">1979</span>
+                                <div class="text-light fw-bold">Atari</div>
+                            </div>
+                            <div class="border-top border-secondary flex-grow-1 mx-2 opacity-25"></div>
+                            <div>
+                                <span class="badge bg-primary mb-1">1980</span>
+                                <div class="text-light opacity-50">Top 1</div>
+                            </div>
+                            <div class="border-top border-secondary flex-grow-1 mx-2 opacity-25"></div>
+                            <div>
+                                <span class="badge bg-secondary mb-1">Hoje</span>
+                                <div class="text-light opacity-50">Web</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section id="tetris-curiosidades" class="py-5 mb-5">
+    <div class="container">
+
+        <div class="d-flex align-items-center gap-3 p-3 border border-danger rounded bg-dark mb-4">
+            <span style="font-size: 1.8rem;">🧱</span>
+            <h2 class="m-0 font-monospace text-danger">
+                Curiosidades do Tetris
+            </h2>
+        </div>
+
+        <div class="card bg-dark border border-danger text-light font-monospace">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    
+                    <div class="col-md-8">
+                        <h4 class="text-danger mb-3">Da Rússia com Amor</h4>
+                        <p class="opacity-75">
+                            Criado em <strong>1984</strong> pelo engenheiro soviético Alexey Pajitnov. O nome vem da união de "Tetra" (quatro) e "Tênis" (o esporte favorito dele).
+                        </p>
+                        
+                        <ul class="list-unstyled mt-3">
+                            <li class="mb-2">
+                                🧠 <strong>Efeito Tetris:</strong> É um fenômeno psicológico real onde jogadores começam a ver blocos de encaixe no mundo real ou ao fechar os olhos.
+                            </li>
+                            <li class="mb-2">
+                                🌍 <strong>Diplomacia:</strong> Foi o primeiro software de entretenimento exportado da URSS para os EUA durante a Guerra Fria.
+                            </li>
+                            <li class="mb-2">
+                                🎵 <strong>Música:</strong> A canção famosa é uma música folclórica russa do século 19 chamada "Korobeiniki".
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 text-center border-start border-danger border-opacity-25">
+                        <div class="p-3 d-flex flex-column align-items-center">
+                            <div class="d-flex flex-column align-items-center mb-2">
+                                <div class="bg-danger border border-light" style="width: 20px; height: 20px;"></div>
+                                <div class="d-flex">
+                                    <div class="bg-danger border border-light" style="width: 20px; height: 20px;"></div>
+                                    <div class="bg-danger border border-light" style="width: 20px; height: 20px;"></div>
+                                    <div class="bg-danger border border-light" style="width: 20px; height: 20px;"></div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="bg-warning border border-light" style="width: 20px; height: 20px;"></div>
+                                <div class="bg-warning border border-light" style="width: 20px; height: 20px;"></div>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <div class="bg-warning border border-light" style="width: 20px; height: 20px;"></div>
+                                <div class="bg-warning border border-light" style="width: 20px; height: 20px;"></div>
+                            </div>
+                            <p class="small text-muted fst-italic">"Tetriminós"</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="border-danger opacity-50 my-4">
+
+                <div class="row g-3">
+                    
+                    <div class="col-md-6">
+                        <div class="p-3 bg-black bg-opacity-25 rounded border border-danger border-opacity-50 h-100">
+                            <h5 class="text-danger fs-6 text-uppercase mb-2">💡 Gerencie o Risco:</h5>
+                            <p class="m-0 small text-light opacity-75">
+                                Não construa torres muito altas esperando a peça reta ("I"). Mantenha a pilha plana para não perder o jogo por ganância!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between text-center align-items-center h-100 px-2" style="font-size: 0.7rem;">
+                            <div>
+                                <span class="badge bg-secondary mb-1">1984</span>
+                                <div class="text-light opacity-50">URSS</div>
+                            </div>
+                            <div class="border-top border-secondary flex-grow-1 mx-2 opacity-25"></div>
+                            <div>
+                                <span class="badge bg-danger mb-1">1989</span>
+                                <div class="text-light fw-bold">Game Boy</div>
+                            </div>
+                            <div class="border-top border-secondary flex-grow-1 mx-2 opacity-25"></div>
+                            <div>
+                                <span class="badge bg-secondary mb-1">Hoje</span>
+                                <div class="text-light opacity-50">Web</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="contato" class="py-5 mb-5">
+    <div class="container">
+
+        <div class="d-flex align-items-center justify-content-center gap-3 mb-4">
+            <span class="blink" style="font-size: 1.5rem;">🪙</span>
+            <h2 class="m-0 title-retro text-warning text-uppercase">
+                Player 1 Select
+            </h2>
+            <span class="blink" style="font-size: 1.5rem;">🪙</span>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                
+                <div class="card bg-dark border border-warning mb-4">
+                    <div class="card-body p-4 text-center">
+                        <p class="font-monospace text-light fs-5 mb-3">
+                            "Hey! Acha que acabou? O jogo só termina quando a gente conversa."
+                        </p>
+                        <p class="font-monospace text-secondary small">
+                            Se você curte a nostalgia dos 8-bits ou os gráficos ultra-realistas da nova geração, 
+                            me chama! Estou sempre pronta para um co-op ou um debate sobre qual Pokemon é o melhor.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    
+                    <div class="col-md-6">
+                        <a href="https://wa.me/5562994988839" target="_blank" class="text-decoration-none">
+                            <div class="p-3 border border-secondary rounded bg-dark hover-neon-warning d-flex align-items-center gap-3 transition-card">
+                                <span style="font-size: 2rem;">📱</span>
+                                <div>
+                                    <h5 class="m-0 text-light font-monospace">WhatsApp</h5>
+                                    <small class="text-secondary font-monospace">(62) 99498-8839</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a href="https://www.linkedin.com/in/carla-monteiro-brandao/" target="_blank" class="text-decoration-none">
+                            <div class="p-3 border border-secondary rounded bg-dark hover-neon-warning d-flex align-items-center gap-3 transition-card">
+                                <span style="font-size: 2rem;">💼</span>
+                                <div>
+                                    <h5 class="m-0 text-light font-monospace">LinkedIn</h5>
+                                    <small class="text-secondary font-monospace">Conecte-se</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a href="https://www.instagram.com/carlamonteiro415/" target="_blank" class="text-decoration-none">
+                            <div class="p-3 border border-secondary rounded bg-dark hover-neon-warning d-flex align-items-center gap-3 transition-card">
+                                <span style="font-size: 2rem;">📸</span>
+                                <div>
+                                    <h5 class="m-0 text-light font-monospace">Instagram</h5>
+                                    <small class="text-secondary font-monospace">@carlamonteiro415</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a href="https://github.com/WhiteFlowey" target="_blank" class="text-decoration-none">
+                            <div class="p-3 border border-secondary rounded bg-dark hover-neon-warning d-flex align-items-center gap-3 transition-card">
+                                <span style="font-size: 2rem;">💻</span>
+                                <div>
+                                    <h5 class="m-0 text-light font-monospace">GitHub</h5>
+                                    <small class="text-secondary font-monospace">Meus Projetos</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+  </main>
+
+  <footer class="text-center py-4 border-top border-secondary text-secondary">
+    <small>INSERT COIN © 2025 RETROHUB</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="games.js"></script>
+</body>
+
+</html>

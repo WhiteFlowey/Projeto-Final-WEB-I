@@ -1,0 +1,143 @@
+/* Importando fonte estilo Pixel/Arcade */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+
+/* Reset básico e fundo */
+body {
+    background-color: #121212 !important; /* Preto quase absoluto */
+    font-family: 'Share Tech Mono', monospace; /* Fonte tecnológica para textos */
+}
+
+/* Títulos Pixelados */
+.title-retro, .navbar-brand {
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 2px 2px 0px #444;
+}
+
+/* Efeito Neon no Logo */
+.neon-text {
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff00de, 0 0 20px #ff00de;
+}
+
+/* Cartões dos Jogos */
+.game-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: #1e1e1e; /* Fundo cinza escuro */
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+/* Ícones grandes nos cards */
+.icon-box {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* Botões Estilo Retro */
+.btn-retro {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+/* Moldura da tela de jogo */
+.game-frame {
+    border: 4px solid #333;
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px #000;
+}
+
+/* Animação suave ao trocar de tela */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Efeito de piscar texto (Blink) */
+.blink {
+    animation: blinker 1.5s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+/* Estilo para os links da Navbar */
+.navbar-nav .nav-link {
+    font-family: 'Press Start 2P', cursive; /* Fonte Pixelada */
+    font-size: 0.8rem; /* Um pouco menor para caber bonito */
+    margin-left: 15px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Efeito Neon ao passar o mouse no menu */
+.hover-neon:hover {
+    color: #fff !important;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff; /* Brilho Ciano */
+}
+
+/* Ajuste para o botão hambúrguer ficar mais visível */
+.navbar-toggler:focus {
+    box-shadow: none; /* Remove a borda azul padrão do Bootstrap */
+    outline: 2px solid #555;
+}
+
+/* Botões de controle do jogo */
+.btn-ctrl {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ajuste no Canvas para não deformar */
+#gameCanvas {
+    image-rendering: pixelated; /* Deixa os pixels bem quadrados e nítidos */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilizando a seção Snake para ela se destacar */
+section#snake-curiosidades {
+  padding: 60px 0; /* Espaçamento interno */
+
+  border-top: 4px solid #4CAF50; /* Linha verde no topo */
+  background-color: #2E4A3D; 
+ margin-bottom: 50px;
+}
+
+
+
+
+/* 2. Asteroids (Branco/Cinza - Tema Espacial) */
+section#asteroids-curiosidades {
+    padding: 60px 0;
+    /* Azul brilhante no topo (igual ao botão Start da sua imagem) */
+    border-top: 4px solid #0d6efd; 
+    /* Fundo Azul Escuro Profundo */
+    background-color: #0d253f;     
+    /* Espaço em branco embaixo */
+    margin-bottom: 50px;           
+}
+
+/* 3. Tetris (Vermelho - Tema Blocos) */
+section#tetris-curiosidades {
+    padding: 60px 0;
+    border-top: 4px solid #dc3545; /* Vermelho (combina com border-danger) */
+    background-color: #4a1c1c;     /* Vermelho Bem Escuro/Vinho */
+    margin-bottom: 5rem;
+}
